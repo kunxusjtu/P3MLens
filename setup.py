@@ -37,7 +37,7 @@ setup(
     license='MIT',
     description='An Accurate P3M Algorithm for Gravitational Lensing Studies in Simulations.',
     long_description=read('README.md'),
-    install_requires=['numpy', 'scipy>=1.6.0', 'numba', 'astropy],
+    install_requires=['numpy', 'scipy>=1.6.0', 'numba', 'astropy'],
     tests_require=['pytest', 'pytest-xdist'],
     classifiers=[
         # How mature is this project? Common values are
