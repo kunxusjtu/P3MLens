@@ -2,7 +2,7 @@ import numpy as np
 from numba import jit,prange,set_num_threads
 from scipy.special import j0,j1
 from scipy.spatial import cKDTree
-from astropy.cosmology import Planck18 as cosmo
+from astropy.cosmology import Planck15 as cosmo
 from multiprocessing import Pool
 from itertools import repeat
 
@@ -349,7 +349,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
     forcey[afy%lense,acx%lense]*afy_w*acx_w + forcey[afy%lense,afx%lense]*afy_w*afx_w
         return np.stack((force_interx.reshape(x.shape),force_intery.reshape(y.shape)))
     
-    def PP_field(self,x,y,N=800):
+    def PP_field(self,x,y,N=400):
         """
         
         PP force field for required positions
@@ -360,7 +360,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
             x coordinates of required positions. 
         y: ndarray of any shape
             y coordinates of required positions.
-        N: int, default=800
+        N: int, default=400
             Number of particles used in adaptive soften length.
         Returns:
         -----------
@@ -491,7 +491,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
             PP_fx, PP_fy = PP_point(coor_inter,self._coor,ind,index,self._m_p,self._a*self._H,count)
         return np.stack((PP_fx.reshape(x.shape),PP_fy.reshape(y.shape)))
     
-    def total_field(self,x,y,PP=True,N=800):
+    def total_field(self,x,y,PP=True,N=400):
         """
         
         Total force field for required positions.
@@ -504,7 +504,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
             y coordinates of required positions.
         PP: bool, default=True
             If False, only performing PM.
-        N: int, default=800
+        N: int, default=400
             Number of particles used in adaptive soften length of PP.
         Returns:
         -----------
@@ -517,7 +517,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
         else:
             return self.PM_field(x, y)
     
-    def deflection_angle(self,x,y,PP=True,N=800):
+    def deflection_angle(self,x,y,PP=True,N=400):
         """
         Deflection angles for required positions.
         
@@ -529,7 +529,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
             y coordinates of required positions.
         PP: bool, default=True
             If False, only performing PM.
-        N: int, default=800
+        N: int, default=400
             Number of particles used in adaptive soften length of PP.
         Returns:
         -----------
@@ -559,7 +559,7 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
         return np.stack((convergence,shear1,shear2,magnification))
     
     
-    def lense_parameter(self,x,y,d=0.05,PP=True,N=800,zl=0.5,zs=1.0,cosmo=cosmo):
+    def lense_parameter(self,x,y,d=0.05,PP=True,N=400,zl=0.5,zs=1.0,cosmo=cosmo):
         """
         Lensing parameters for required positions. Should be used only 
         for single plane problems.
@@ -576,13 +576,13 @@ forcex[fy%lense,cx%lense]*fy_w*cx_w + forcex[fy%lense,fx%lense]*fy_w*fx_w + forc
             to derive lensing parameters at (x, y).
         PP: bool, default=True
             If False, only performing PM.
-        N: int, default=800
+        N: int, default=400
             Number of particles used in adaptive soften length of PP.
         zl: float, default=0.5
             Redshift of the lens plane.
         zs: float, default=1.0
             Redshift of the source plane.
-        cosmo: astropy.cosmology, default=Planck18
+        cosmo: astropy.cosmology, default=Planck15
             Cosmology used to calculate angular diameter distances.
             
         Returns:
