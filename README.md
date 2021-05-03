@@ -41,7 +41,7 @@ angles = lens.deflection_angle(x, y)
 convergence, shear1, shear2, magnification = lens.lense_parameter(x, y, zl=0.5, zs=1.0)
 ```
 
-If you want to construct many Planes with the same configuration (box size, grid size, mass assignment and smoothing), you're recommanded to calculate the optimized Green function by yourself and input it to the `Plane` class. So the `Plane` class won't waste time to calculate the Green function for every Plane.
+If you want to construct many `Plane`s with the same configuration (box size, grid size, mass assignment and smoothing), you're recommanded to calculate the optimized Green function by yourself and input it to the `Plane` class. So the `Plane` class won't waste time to calculate the Green function for every Plane.
 
 ```python
 from P3MLens.Plane import Green
