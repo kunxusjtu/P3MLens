@@ -68,7 +68,7 @@ class Plane:
         self._set_numba_threads(core)
         self._coor = coor
         self._fftw = fftw
-        self._tree = cKDTree(self._coor,leafsize=400,boxsize=self._box)
+        self._tree = cKDTree(self._coor,leafsize=40,boxsize=self._box)
         self._green = green
         self.density_map = self._paint(self._coor,self._box,self._m_p,self._H,self._p)
         self.PM_field_grid = self._PM_grid()
