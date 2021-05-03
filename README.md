@@ -49,3 +49,7 @@ green = Green(box=1000, H=1, p=2, a=6)
 lens1 = Plane(coor1, box=1000, m_p=5e2, H=1, p=2, a=6, green=green)
 lens2 = Plane(coor2, box=1000, m_p=5e2, H=1, p=2, a=6, green=green)
 ```
+## Author
+Kun Xu 
+
+kunxu.sjtu15@foxmail.com
