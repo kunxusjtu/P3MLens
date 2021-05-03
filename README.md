@@ -19,4 +19,7 @@ This implementation of P3MLens depends on:
 * numba>=0.50.0
 
 ## Usage
-`from P3MLens.Plane import Plane`
+P3MLens.Plane contains a class named Plane, which is the main part of the algorithm, and a function named Green, which is used to calculate the 2D optimized Green funciton. With the 2D positions of the particles, a lens plane can be constructed 
+
+`from P3MLens.Plane import Plane
+lens = Plane(coor, box=1000, m_p=5e2)`
