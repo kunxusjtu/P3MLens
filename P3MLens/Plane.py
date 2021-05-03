@@ -18,7 +18,7 @@ class Plane:
     -----------
     coor: ndarray of shape (n_particles, 2)
         [x,y] coordinates of particles in the unit of kpc/h. x and y 
-        should be in the range of 0 < x,y < box-1.
+        should be in the range of 0 < x,y < box.
     box: even int
         Physical length of the Plane in kpc/h. Should be even for FFT.
     m_p: float or ndarray of shape (n_particles,)
